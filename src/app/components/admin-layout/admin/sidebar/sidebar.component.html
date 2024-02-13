@@ -1,0 +1,32 @@
+<div class="offcanvas offcanvas-start " data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="SideBar" aria-labelledby="SideBarLabel">
+
+    <div class="offcanvas-header text-bg-success mb-3">
+        <img class="rounded mx-auto d-block" width="80" src="../../../../../assets/img/logo-grupo-silvestre-blanco.png"/>
+        <h5 class="offcanvas-title" id="SideBarLabel"></h5>
+        <button type="button" class="btn btn-outline-light border-0" data-bs-dismiss="offcanvas" aria-label="Close">
+          <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+    <div class="ps-4">
+      <h5>SILVESTRE</h5>
+    </div>
+    <div class="ps-4 mb-3 text-secondary">
+      MENÚ DE NAVEGACIÓN
+    </div>
+    <div class="accordion" id="accordionExample{{i}}" routerLinkActive="active" *ngFor="let menuItem of menuItems; index as i" >
+        <div class="accordion-item ">
+            <h2 class="accordion-header" id="heading{{i}}">
+              <button class="accordion-button py-1 collapsed my-2" type="button" data-bs-toggle="collapse" [attr.data-bs-target] ="'#collapse'+i" aria-expanded="false" [attr.aria-controls] ="'#collapse'+i" >
+                <i class="{{menuItem.icon}} pe-2 "></i> {{menuItem.title}}
+              </button>
+            </h2>
+            <div *ngIf="menuItem.lista && menuItem.lista.length>0" id="collapse{{i}}" class="accordion-collapse collapse" [attr.aria-labelledby] ="'heading'+i"  [attr.data-bs-parent] ="'#accordionExample'+i" >
+              <div class="accordion-body">
+                <div *ngFor="let item of menuItem.lista; index as j">
+                  <a class="text-dark" href="{{item.path}}">{{item.title}}</a>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
